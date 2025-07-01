@@ -32,6 +32,7 @@ publishing {
             from(components["java"])
             groupId = "io.erb"
             artifactId = "prieglius"
+            version = System.getenv("GITHUB_SHA")
         }
     }
 }
