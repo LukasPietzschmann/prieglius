@@ -22,14 +22,16 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/LukasPietzschmann/prieglius")
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+                username = project.findProperty("gpr.user")?.toString() ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key")?.toString()  ?: System.getenv("TOKEN")
             }
         }
     }
     publications {
-        register<MavenPublication>("gpr") {
+        register<MavenPublication>("prieglius") {
             from(components["java"])
+            groupId = "io.erb"
+            artifactId = "prieglius"
         }
     }
 }
